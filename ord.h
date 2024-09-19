@@ -12,6 +12,9 @@ private:
 	void mergeSplit(std::vector<T>&, std::vector<T>&, int, int);
 public:
 	std::vector<T> mergeSort(const std::vector<T>&);
+public:
+	std::vector<T> insertionSort(const std::vector<T>&);
+
 };
 
 template <class T>
