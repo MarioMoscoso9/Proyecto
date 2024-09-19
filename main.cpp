@@ -1,3 +1,4 @@
+//Mario Armando Moscoso Becerra A01712209
 #include "ord.h"
 #include <iostream>
 #include <vector>
@@ -58,7 +59,7 @@ int main() {
             if (!getline(ss, tempStr)) continue;
             sck = stoi(tempStr);
 
-            // Almacenar los datos si el año coincide con el año de interés
+            // Almacenar los datos si el año coincide con el año de interes 
             if (ano_interes == ano) {
                 equipos.push_back(equipo);
                 switch (opcion) {
@@ -76,7 +77,6 @@ int main() {
                         break;
                     default:
                         cout << "Opción inválida." << endl;
-                        return 1; // Terminar el programa en caso de opción inválida
                 }
             }
         }
@@ -94,19 +94,20 @@ int main() {
         tipo = "Sacks (capturas)";
     }
 
-    // Imprimir los elementos del vector rank sin ordenar
+    // Imprimir los elementos del vector sin ordenar
     cout << "Datos para el año " << ano_interes << " de la estadística " << tipo << " de los 32 equipos de la NFL sin ordenar:" << endl;
     for (size_t i = 0; i < rank.size(); ++i) {
         cout << equipos[i] << ": " << rank[i] << endl;
     }
     cout << endl;
 
-    // Ordenar los datos en orden ascendente
+    // Ordenar los datos en orden de menor a mayor 
     Sorts<int> sorts;
-    vector<int> sortedRank = sorts.insertionSort(rank);
+    vector<int> sortedRank = sorts.mergeSort(rank);
 
-    // Crear un vector para los equipos ordenados basado en el orden de las estadísticas
+    // Crear un vector para los equipos ordenados confrome a las estadisticas ya ordenadas
     vector<string> sortedEquipos(rank.size());
+    
     for (size_t i = 0; i < rank.size(); ++i) {
         for (size_t j = 0; j < rank.size(); ++j) {
             if (rank[j] == sortedRank[i]) {
@@ -116,7 +117,7 @@ int main() {
         }
     }
 
-    // Imprimir los elementos del vector rank ya ordenados
+    // Imprimir los elementos del vector rank junto con los nombres de los equipos.
     cout << "Datos ya ordenados:" << endl;
     for (size_t i = 0; i < sortedRank.size(); ++i) {
         cout << sortedEquipos[i] << ": " << sortedRank[i] << endl;
