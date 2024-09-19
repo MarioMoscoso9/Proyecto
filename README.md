@@ -1,3 +1,4 @@
+## Mario Armando Moscoso Becerra ||A01712209
 # Descripción del Algoritmo de Ranking NFL Temporadas 2018 a 2023
 En este código se desarrolló un sistema para el análisis de la información sobre la liga de fútbol americano NFL (National Football League), donde se analizan las siguientes estadísticas:
 
