@@ -80,9 +80,7 @@ int main() {
 
                     // Crear objeto Estadisticas con los datos
                     Estadisticas stats(td, inte, cmp, sck); 
-                    arbol.insertar(equipo, ano, stats); // Insertar equipo, año y estadísticas en el árbol
-
-                    // Imprimir diagnóstico
+                    arbol.insertar(equipo, ano, stats); // Insertar equipo
                     
                     switch (opcion) {
                         case 1:
@@ -97,7 +95,7 @@ int main() {
                         case 4:
                             rank.push_back(sck);
                             break;
-                        case 5: // Esta opción no almacena estadísticas
+                        case 5:
                             break;
                     }
                 }
@@ -127,7 +125,7 @@ int main() {
 
         // Mostrar datos
         if (opcion != 5) {
-            cout << "Datos para el año " << ano_interes << " de la estadística " << tipo << " de los 32 equipos de la NFL:" << endl;
+            cout << "Datos para el año " << ano_interes << " de la estadística " << tipo << " de los 32 equipos de la NFL ordenados alfabéticamente:" << endl;
             for (size_t i = 0; i < rank.size(); ++i) {
                 cout << equipos[i] << ": " << rank[i] << endl;
             }
@@ -160,7 +158,7 @@ int main() {
             cout << endl;
         } else { // Opción para buscar equipo
             string equipo_buscado;
-            cout << "Ingrese el nombre del equipo que desea buscar: ";
+            cout << "Ingrese el nombre del equipo que desea buscar (minúsculas): ";
             cin.ignore(); // Limpiar el buffer
             getline(cin, equipo_buscado);
 
@@ -174,4 +172,4 @@ int main() {
     } while (continuar == 's' || continuar == 'S');
 
     return 0;
-}
+} 
