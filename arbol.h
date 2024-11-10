@@ -62,7 +62,7 @@ Nodo* Arbol::buscar(Nodo* nodo, const std::string& equipo) const {
     if (nodo == NULL) {
         return NULL; 
     } else if (equipo == nodo->equipo) {
-        return nodo; // Se encontró el equipo
+        return nodo; 
     } else if (equipo < nodo->equipo) {
         return buscar(nodo->izquierda, equipo);
     } else {

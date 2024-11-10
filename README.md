@@ -44,7 +44,8 @@ Se continúa agregando un objeto de Estadísticas y se inserta en el árbol con 
 Para compilar el archivo:
 
 ```bash
-g++ ord.h arbol.h  main.cpp -o avance
+g++ -std=c++11 ord.h arbol.h  main.cpp -o avance
+
 ```
 Para correr el archivo:
 ```bash
