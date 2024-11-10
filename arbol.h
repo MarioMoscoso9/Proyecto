@@ -1,4 +1,4 @@
-//Mario Armando Moscoso Becerra||A01712209
+// Mario Armando Moscoso Becerra || A01712209
 #ifndef ARBOL_H
 #define ARBOL_H
 #include <iostream>
@@ -39,12 +39,23 @@ private:
 
 public:
     Arbol() : raiz(NULL) {}
+
     void insertar(const std::string& equipo, int ano, Estadisticas estadistica) {
         insertar(raiz, equipo, ano, estadistica);
     }
+    
     void buscarYMostrarEstadisticas(const std::string& equipo, int anio) const;
 };
 
+/*
+Inserta un equipo con sus estadísticas por año en el árbol binario de búsqueda.
+- Mejor caso: O(1), cuando el árbol está vacío y se inserta en la raíz, ya que cuando el árbol está vacío 
+  y el nodo se inserta directamente en la raíz, sin necesidad de recorrer.
+- Caso promedio: O(log n) en un árbol balanceado ya que en un árbol balanceado, cada inserción 
+  implica recorrer solo una rama hacia la posición de inserción, lo cual toma tiempo logarítmico.
+- Peor caso: O(n) si el árbol está completamente desbalanceado y se comporta como una lista. Ocurre en un 
+  árbol desbalanceado (como una lista), donde cada inserción tiene que recorrer toda la "lista" hasta el final.
+*/
 void Arbol::insertar(Nodo*& nodo, const std::string& equipo, int ano, Estadisticas estadistica) {
     if (nodo == NULL) {
         nodo = new Nodo(equipo);
@@ -58,6 +69,14 @@ void Arbol::insertar(Nodo*& nodo, const std::string& equipo, int ano, Estadistic
     }
 }
 
+/*
+Busca un nodo en el árbol binario de búsqueda que contenga el equipo especificado.
+- Mejor caso: O(1), cuando el equipo está en la raíz ya que la búsqueda es inmediata.
+- Caso promedio: O(log n) en un árbol balanceado ya que la búsqueda en cada nivel reduce a la mitad el 
+  número de nodos a recorrer, resultando en complejidad logarítmica.
+- Peor caso: O(n) si el árbol está desbalanceado. Ocurre en un árbol desbalanceado, donde se requiere 
+  recorrer todos los nodos de una "lista" hasta encontrar el valor o alcanzar un nodo nulo.
+*/
 Nodo* Arbol::buscar(Nodo* nodo, const std::string& equipo) const {
     if (nodo == NULL) {
         return NULL; 
@@ -70,7 +89,17 @@ Nodo* Arbol::buscar(Nodo* nodo, const std::string& equipo) const {
     }
 }
 
-
+/*
+Busca un equipo en el árbol y muestra las estadísticas del año especificado si existen.
+- Mejor caso: O(1), si el equipo está en la raíz y las estadísticas para el año están en la primera posición 
+  del mapa. Sucede si el equipo buscado está en la raíz y el año solicitado es el primero en el mapa estadisticasPorAno.
+- Caso promedio: O(log n) para la búsqueda en el árbol + O(log m) para la búsqueda en el mapa, donde n es 
+  el número de nodos y m es el número de años registrados para el equipo. En promedio, el acceso a ambos 
+  es logarítmico (si el árbol está balanceado y el mapa usa un árbol balanceado internamente).
+- Peor caso: O(n) para la búsqueda en el árbol (árbol desbalanceado) + O(log m) para la búsqueda en el mapa. 
+  Ocurre si el árbol está desbalanceado y requiere recorrer muchos nodos. El acceso al año en el mapa sigue 
+  siendo O(log m) dado que map utiliza un árbol balanceado internamente.
+*/
 void Arbol::buscarYMostrarEstadisticas(const std::string& equipo, int ano) const {
     Nodo* resultado = buscar(raiz, equipo);
     if (resultado != NULL) {

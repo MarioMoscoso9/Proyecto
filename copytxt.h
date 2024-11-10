@@ -1,10 +1,16 @@
+// Mario Armando Moscoso Becerra || A01712209
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 
+/*
+La función para ingresar estadísticas y guardarlas en un archivo temporal tiene una 
+complejidad de O(n) en todos los casos, donde n es el número de equipos. Esto se debe 
+a que se recorre una vez el vector de equipos para pedir y almacenar las estadísticas de cada uno
+*/
 void ingresarEstadisticas(const std::string& year) {
-    std::ofstream prueba("prueba.txt"); //Archivo temporal
+    std::ofstream prueba("prueba.txt"); // Archivo temporal
 
     if (!prueba.is_open()) {
         std::cerr << "No se pudo abrir prueba.txt.\n";
@@ -40,7 +46,12 @@ void ingresarEstadisticas(const std::string& year) {
     std::cout << "Estadísticas ingresadas en prueba.txt.\n";
 }
 
-// Función para transferir datos de el archivo temporal a estadiaticas.txt
+/*
+La función para transferir datos entre archivos tiene una complejidad de O(m) en todos los 
+casos, donde m es el número de líneas en el archivo temporal (prueba.txt). El proceso consiste 
+en leer cada línea del archivo temporal y escribirla en el archivo principal, por lo que el tiempo 
+depende únicamente de la cantidad de líneas a transferir.
+*/
 void transferirDatos() {
     std::ifstream prueba("prueba.txt");
     std::ofstream archivoPrincipal("estadisticas.txt", std::ios::app);
@@ -50,7 +61,7 @@ void transferirDatos() {
         return;
     }
 
-    // Dos saltos de linea para conservar formato.
+    // Dos saltos de línea para conservar formato.
     archivoPrincipal << "\n\n";
 
     std::string linea;

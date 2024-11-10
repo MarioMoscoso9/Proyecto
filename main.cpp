@@ -21,31 +21,29 @@ int main() {
     ifstream archivo("estadisticas.txt");
 
     do {
-        
         int opcion1;
-        cout << "¿Que desea hacer? (poner unicamente 1 o 2)" << endl;
-        cout << "1. Busqueda de estadisticas" << endl;
-        cout << "2. Actualizar estadisticas (temporada)" << endl;
+        cout << "¿Qué desea hacer? (poner únicamente 1 o 2)" << endl;
+        cout << "1. Búsqueda de estadísticas" << endl;
+        cout << "2. Actualizar estadísticas (temporada)" << endl;
         cin >> opcion1;
 
         if (opcion1 < 1 || opcion1 > 2) {
-                cout << "Opción inválida. Por favor, elige una opción del 1 o 2." << endl;
-                continue; 
-            }
+            cout << "Opción inválida. Por favor, elige una opción del 1 o 2." << endl;
+            continue; 
+        }
 
-
-        if(opcion1 ==1){
+        if (opcion1 == 1) {
             int ano_interes;
-             cout << "Ingrese el año que desea filtrar (2018-2023): ";
+            cout << "Ingrese el año que desea filtrar (2018-2023): ";
             cin >> ano_interes;
 
             int opcion;
             cout << "Ingresa la estadística a analizar (poner únicamente el número 1-5)" << endl;
             cout << "1. Touchdowns" << endl
-                << "2. Intercepciones" << endl
-                << "3. Pases completos" << endl
-                << "4. Sacks (capturas)" << endl
-                << "5. Buscar equipo" << endl;
+                 << "2. Intercepciones" << endl
+                 << "3. Pases completos" << endl
+                 << "4. Sacks (capturas)" << endl
+                 << "5. Buscar equipo" << endl;
             cin >> opcion;
 
             if (opcion < 1 || opcion > 5) {
@@ -53,6 +51,7 @@ int main() {
                 continue;
             }
 
+            // Complejidad de lectura del archivo: O(n), donde n es el número de líneas
             if (archivo.is_open()) {
                 while (getline(archivo, linea)) {
                     // Saltar las líneas de comentarios y líneas vacías
@@ -82,7 +81,7 @@ int main() {
                     if (ano_interes == ano) {
                         equipos.push_back(equipo);
 
-                        // Crear objeto Estadisticas con los datos
+                        
                         Estadisticas stats(td, inte, cmp, sck); 
                         arbol.insertar(equipo, ano, stats); // Insertar equipo
                     
@@ -126,7 +125,7 @@ int main() {
                 tipo = "Sacks (capturas)";
             }
 
-            // Mostrar datos
+            // Mostrar datos sin ordenar
             if (opcion != 5) {
                 cout << "Datos para el año " << ano_interes << " de la estadística " << tipo << " de los 32 equipos de la NFL ordenados alfabéticamente:" << endl;
                 for (size_t i = 0; i < rank.size(); ++i) {
@@ -134,7 +133,6 @@ int main() {
                 }
                 cout << endl;
 
-                // Ordenar los índices basado en los valores en rank
                 vector<size_t> indices(rank.size());
                 for (size_t i = 0; i < rank.size(); ++i) {
                     indices[i] = i;
@@ -163,24 +161,23 @@ int main() {
                 cin.ignore(); // Limpiar el buffer
                 getline(cin, equipo_buscado);
 
-            arbol.buscarYMostrarEstadisticas(equipo_buscado, ano_interes);
+                arbol.buscarYMostrarEstadisticas(equipo_buscado, ano_interes);
             }
         }
 
-        if (opcion1==2){
+        if (opcion1 == 2) {
             std::string year;
             std::cout << "Ingrese el año para las estadísticas: ";
             std::cin >> year;
 
             ingresarEstadisticas(year);
             transferirDatos();
-
         }
-            cout << "¿Desea realizar otra búsqueda? (s/n): ";
-            cin >> continuar;
 
+        cout << "¿Desea realizar otra búsqueda? (s/n): ";
+        cin >> continuar;
 
-        } while (continuar == 's' || continuar == 'S');
+    } while (continuar == 's' || continuar == 'S');
 
-        return 0;
-} 
+    return 0;
+}
