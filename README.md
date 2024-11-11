@@ -32,6 +32,11 @@ De los cuales, void insertar es una función privada encargada de insertar un eq
 
 Por otro lado, el método Nodo* buscar es una función privada recursiva que busca un equipo específico en el árbol, comenzando desde el nodo dado. Si encuentra el equipo, devuelve el puntero a ese nodo. Este método, de igual manera, se complementa con el método void buscarYMostrarEstadisticas, que busca un equipo en el árbol y muestra las estadísticas del equipo para el año solicitado.
 
+## Descripcion avance 3:
+En el tercer y ultimo avance correspondiente el cual el objetivo es tener una aplicación completa que permita cargar, organizar, consultar y guardar datos, se implementó el archivo copytxt.h la cual contiene funciones como IngresarEstadisticas la cual, permite al usuario ingresar estadísticas de los 32 equipos de la NFL y almacena estos datos en un archivo llamado prueba.txt.
+
+Posteriormente la función transferirDatos transfiere datos del archivo temporal prueba.txt al archivo principal estadisticas.txt, con el objetivo de consolidar las estadísticas en un solo archivo principal, cabe recalcar que se utilizó la opción std::ios::app al cual se utiliza al abrir un archivo en C++ para especificar que el archivo debe abrirse en modo de anexado (append). Esto significa que cualquier dato escrito en el archivo se agregará al final del contenido existente, en lugar de sobrescribirlo desde el principio.
+
 ### Cambios sobre el primer avance
 1  Únicamente se modificó el main para poder implementar la nueva función del programa correspondiente a buscar un equipo de la NFL. Primeramente se declara una instancia de la clase árbol para manejar las estadísticas de los equipos. Posteriormente se le añade la opción que permite al usuario buscar un equipo y se ha añadido un fragmento que valida si la opción ingresada por el usuario es válida.
 
@@ -39,12 +44,14 @@ Se continúa agregando un objeto de Estadísticas y se inserta en el árbol con 
 
 2  Otro cambio fue la implementación de un ciclo do-while que permite al usuario decidir si lleva a cabo otra búsqueda o no.
 
+3 Se mejoró el uso de memoria dentro del programa ya que anteriormente cada que el usuario deseaba hacer otra consulta se desperdiciaba memoria al crear nuevas instancias por cada consulta.
+
 ## Cómo compilar y ejecutar
 
 Para compilar el archivo:
 
 ```bash
-g++ -std=c++11 ord.h arbol.h  main.cpp -o avance
+g++ -std=c++11 main.cpp -o avance
 
 ```
 Para correr el archivo:
@@ -96,3 +103,20 @@ Considero que al implementar un árbol de búsqueda binaria, se puede considerar
 #### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
 
 Se utilizó un ifstream para abrir y leer el archivo estadisticas.txt. Esto permite cargar datos desde un archivo externo en lugar de depender de datos dentro del programa, ademas existe un control de errores adecuado para verificar si el archivo se ha abierto correctamente. Si hay un problema al abrir el archivo, se muestra un mensaje de error y se termina el programa. Esto asegura que el programa no intente procesar datos si el archivo no está disponible para leerse, adicionalmente, el código incluye lógica para omitir líneas de comentarios y líneas vacías. Esto asegura que solo se procesen las líneas que contienen datos relevantes, mejorando el programa. Finalmente, antes de procesar los datos, se valida la opción ingresada por el usuario. Esto previene errores de entrada y mejora la experiencia del usuario.
+
+#### Implementa mecanismos de escritura de archivos para guardar los datos de las estructuras de manera correcta.
+
+En copytxt.h, se implementan mecanismos de escritura de archivos para almacenar correctamente los datos de las estadísticas de los 32 equipos de la NFL en archivos de texto. Donde la función principal es registrar datos temporales en un archivo y luego transferirlos a un archivo principal para su conjuncion mediante:
+- La función ingresarEstadisticas crea y almacena los datos en un archivo temporal, prueba.txt, organizándolos en un formato consistente y legible. Los datos se guardan cada uno separado por comas, por lo que facilita su procesamiento, ya que cada línea representa las estadísticas de un equipo para un año específico.
+- Ambas funciones verifican que los archivos se abran correctamente antes de proceder con cualquier operación de escritura o lectura. Si alguno de los archivos no se puede abrir, el programa emite un mensaje de error y termina la función correspondiente, evitando que el programa falle y permitiendo al usuario tomar medidas correctivas.
+
+### SICT0301: Evalúa los componentes
+#### Hace un análisis de complejidad correcto y completo para todos los demás componentes del programa y determina la complejidad final del programa.
+
+Ya habiendo analizado cada funcion por si misma y estableciendo asi la complejidad ya sea en su caso promedio, peor y mejor, se determinará, apartir de la observacion general del programa su complejidad final donde se analizaran aspectos generales claves en el programa para asi determinarla:
+- Ordenamiento: Se utiliza mergeSort, que tiene una complejidad de 𝑂(𝑛log𝑛).
+- Árbol Binario: Las inserciones y búsquedas en el árbol tienen una complejidad promedio de 𝑂(log⁡𝑛) si el árbol está balanceado. La construcción del árbol completo para los datos tiene una complejidad de 𝑂(𝑛log⁡𝑛).
+- Entrada y salida de datos: Las operaciones de lectura y escritura de archivos, como ingresarEstadisticas y transferirDatos, tienen una complejidad de 𝑂(𝑛) en función de la cantidad de datos.
+
+Finalmente, dado que los procesos que tienen mas complejidad son el ordenamiento y la construcción del arbol binario ambos con complejidad 0(n log n). La complejidad final del porgrama será O(nlogn).
+

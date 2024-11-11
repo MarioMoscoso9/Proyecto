@@ -105,7 +105,7 @@ int main() {
                 }
                 archivo.close();
             } else {
-                cout << "Error al abrir el archivo." << endl;
+                cout << "Error al abrir el archivo, reinicie por favor." << endl;
                 return 1;
             }
 
