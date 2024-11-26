@@ -120,8 +120,8 @@ Ya habiendo analizado cada funcion por si misma y estableciendo asi la complejid
 
 Finalmente, dado que los procesos que tienen mas complejidad son el ordenamiento y la construcción del arbol binario ambos con complejidad 0(n log n). La complejidad final del porgrama será O(nlogn).
 
-#Evidencia 2: Videos problemas.
-##Problema 1 Algoritmo de ordenamiento:
+# Evidencia 2: Videos problemas.
+## Problema 1 Algoritmo de ordenamiento:
 Enlace de YouTube a la explicación:
 ```bash
 https://youtu.be/Z5tl5pV0DD4
@@ -132,7 +132,7 @@ Enlace Submit Leetcode:
 https://leetcode.com/problems/largest-number/submissions/1450141697
 
 ```
-##Problema 2 Pilas:
+## Problema 2 Pilas:
 Enlace de YouTube a la explicación:
 ```bash
 https://youtu.be/7tcCpqtlBrM
@@ -143,7 +143,7 @@ Enlace Submit Leetcode:
 https://leetcode.com/problems/reorder-list/submissions/1451029232
 
 ```
-##Problema 3 Arboles de Busquedas Binaria:
+## Problema 3 Arboles de Busquedas Binaria:
 Enlace de YouTube a la explicación:
 ```bash
 https://youtu.be/8aiL_c74qLU
